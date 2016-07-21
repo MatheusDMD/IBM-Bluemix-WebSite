@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/clearfix.css">
+	<link rel="stylesheet" href="css/principal.css">
+	<link rel="stylesheet" href="css/style.css" />
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="barcode.js"></script>
+
+<script type="text/javascript">
+
+var sound = new Audio("barcode.wav");
+
+$(document).ready(function() {
+
+	barcode.config.start = 0.1;
+	barcode.config.end = 0.9;
+	barcode.config.video = '#barcodevideo';
+	barcode.config.canvas = '#barcodecanvas';
+	barcode.config.canvasg = '#barcodecanvasg';
+	barcode.setHandler(function(barcode) {
+		$('#result').html(barcode);
+	});
+	barcode.init();
+
+	$('#result').bind('DOMSubtreeModified', function(e) {
+		sound.play();	
+	});
+
+});
+
+</script>
+
+</head>
+<body>
+
+<div id="barcode">
+	<video id="barcodevideo" autoplay></video>
+	<canvas id="barcodecanvasg" ></canvas>
+</div>
+<canvas id="barcodecanvas" ></canvas>
+<div id="result"></div>
+
+	<header>
+	      <a href="principal.html"><img class="menubutton" src="img/left-arrow.png"></a>
+
+
+	      Ajudaí - Scanner de Código de Barras
+	    </header>
+
+	    <main>
+	        <section>
+	        	<p>Tipo de gasto:</p>
+              <select>
+                <optgroup label = "Categoria de Gasto">
+                <option value="agua">Água</option>
+                <option value="gas">Gás</option>
+                <option value="luz">Luz/Energia</option>
+                <option value="roupa">Roupa</option>
+                <option value="alimentação">Alimentação</option>
+                <option value="lazer">Lazer</option>
+                <option value="transporte">Transporte</option>
+                <option value="saúde">Saúde</option>
+                <option value="educação">Educação</option>
+              </select>
+              <br></br>
+        		<a href="principal.html"><input type="submit" value="Confirmar gasto"></input></a>
+        	  <br></br>
+	              <p>Passe o código de barras da sua conta utilizando a câmera do seu celular.</p>
+	        </section>
+	    </main>
+</body>
+</html>
